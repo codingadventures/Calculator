@@ -15,14 +15,16 @@ namespace ConsoleApplication1
 		//	
 			List<string> numbers = new List<string>();// = operations.Split('+').ToList();
 			List<byte> acc = new List<byte> ();
+			float sum = 0;
 					
-			while( true)
+			while(true)
 			{
 
 				int console = Console.Read ();
-				if (console <= 57 && console >= 48) {
+				if (console <= 57 && console >= 48 || console == 46) {
 					//number
 					acc.Add ((byte)console);
+					continue;
 					//Console.Write (System.Text.ASCIIEncoding.ASCII.GetString (new byte [] {(byte) console }));
 				}
 
@@ -33,7 +35,6 @@ namespace ConsoleApplication1
 					acc.Clear ();
 					numbers.Add (res);
 					if (numbers.Count == 2) {
-						float sum = 0;
 						foreach (var number in numbers) {
 							float value;
 							float.TryParse (number, out value);
@@ -45,7 +46,25 @@ namespace ConsoleApplication1
 					Console.Write ('+');
 					
 					Console.WriteLine ();
+					continue;
 				}
+
+				if (console == 10 || console == 61) { 
+					//enter or equal
+					var res = System.Text.ASCIIEncoding.ASCII.GetString (acc.ToArray ());
+					acc.Clear ();
+					numbers.Add (res);
+
+					foreach (var number in numbers) {
+						float value;
+						float.TryParse (number, out value);
+						sum += value;
+					}
+					numbers.Clear ();
+					Console.WriteLine (sum);
+					continue;
+				}
+				Console.Write ("\b");
 			}
 
 			//if (!numbers.All (p => int.TryParse (p, out int i) || float.TryParse(p, out float f)))
