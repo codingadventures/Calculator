@@ -9,35 +9,67 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Calculator!");
-		REDO:
-            Console.WriteLine("Please Insert your operation and press enter");
-
-            string operations = Console.ReadLine();
-
-			var numbers = operations.Split('+').ToList();
-
-			if (!numbers.All (p => int.TryParse (p, out int i)))
+		 
+			Console.WriteLine("Please Insert your operation and press enter");
+			 
+		//	
+			List<string> numbers = new List<string>();// = operations.Split('+').ToList();
+			List<byte> acc = new List<byte> ();
+					
+			while( true)
 			{
-				Console.WriteLine ("Letters are not allowed");
-				Console.Clear ();
-				goto REDO;
+
+				int console = Console.Read ();
+				if (console <= 57 && console >= 48) {
+					//number
+					acc.Add ((byte)console);
+					//Console.Write (System.Text.ASCIIEncoding.ASCII.GetString (new byte [] {(byte) console }));
+				}
+
+				if (console == 43) // Add
+				{
+					Console.WriteLine ("\b");
+					var res = System.Text.ASCIIEncoding.ASCII.GetString (acc.ToArray());
+					acc.Clear ();
+					numbers.Add (res);
+					if (numbers.Count == 2) {
+						float sum = 0;
+						foreach (var number in numbers) {
+							float value;
+							float.TryParse (number, out value);
+							sum += value;
+						}
+						numbers.Clear ();
+						Console.WriteLine (sum);
+					}
+					Console.Write ('+');
+					
+					Console.WriteLine ();
+				}
 			}
 
-			if (numbers.Count > 2) 
-			{
-				int buffer = 0;
-				for (int i = 0; i < numbers.Count ; i++) 
-				{
-					Console.Write ("Sum of " + buffer + " and " + numbers [i] + "is: ");
-					 
-					buffer += int.Parse (numbers [i]) - 1;
+			//if (!numbers.All (p => int.TryParse (p, out int i) || float.TryParse(p, out float f)))
+			//{
+			//	Console.WriteLine ("Letters are not allowed");
+			//	Console.Clear ();
+			//	goto REDO;
+			//}
 
-					Console.WriteLine (buffer);
-				}
-			}else
-            	Console.WriteLine($"The sum is: {numbers.Select(int.Parse).Sum()}");
+			//if (numbers.Count > 2) 
+			//{
+			//	int buffer = 0;
+			//	for (int i = 0; i < numbers.Count ; i++) 
+			//	{
+			//		Console.Write ("Sum of " + buffer + " and " + numbers [i] + "is: ");
+					 
+			//		buffer += int.Parse (numbers [i]) - 1;
+
+			//		Console.WriteLine (buffer);
+			//	}
+			//}else
+   //         	Console.WriteLine($"The sum is: {numbers.Select(int.Parse).Sum()}");
             
-			Console.ReadLine();
+			//Console.ReadLine();
         }
     }
 }
