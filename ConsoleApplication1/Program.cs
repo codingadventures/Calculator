@@ -11,41 +11,36 @@ namespace ConsoleApplication1
             Console.WriteLine("Welcome to Calculator!");
 		 
 			Console.WriteLine("Please Insert your operation and press enter");
-			 
-		//	
-			List<string> numbers = new List<string>();// = operations.Split('+').ToList();
+
+			List<string> numbers = new List<string>();
 			List<byte> acc = new List<byte> ();
+			//Stack<byte> accumulator = new Stack<byte>;
+
 			float sum = 0;
 					
 			while(true)
 			{
-
 				int console = Console.Read ();
 				if (console <= 57 && console >= 48 || console == 46) {
-					//number
+					//number 0..9 and .
 					acc.Add ((byte)console);
 					continue;
-					//Console.Write (System.Text.ASCIIEncoding.ASCII.GetString (new byte [] {(byte) console }));
 				}
 
 				if (console == 43) // Add
 				{
-					Console.WriteLine ("\b");
+					Console.WriteLine ("\b"); //cancel + and create a new line
 					var res = System.Text.ASCIIEncoding.ASCII.GetString (acc.ToArray());
 					acc.Clear ();
 					numbers.Add (res);
-					if (numbers.Count == 2) {
-						foreach (var number in numbers) {
-							float value;
-							float.TryParse (number, out value);
-							sum += value;
-						}
-						numbers.Clear ();
-						Console.WriteLine (sum);
-					}
-					Console.Write ('+');
+					float value;
+					float.TryParse (res, out value);
+					sum += value;
+
+					if(numbers.Count > 1)
+					Console.WriteLine (sum);
+					Console.WriteLine ('+');
 					
-					Console.WriteLine ();
 					continue;
 				}
 
@@ -54,7 +49,6 @@ namespace ConsoleApplication1
 					var res = System.Text.ASCIIEncoding.ASCII.GetString (acc.ToArray ());
 					acc.Clear ();
 					numbers.Add (res);
-
 					foreach (var number in numbers) {
 						float value;
 						float.TryParse (number, out value);
