@@ -66,6 +66,25 @@ namespace ConsoleApplication1
 					continue;
 				}
 
+				if (console == 42) { 
+					Console.WriteLine ("\b"); //cancel + and create a new line
+					var number = System.Text.ASCIIEncoding.ASCII.GetString (numberAccumulator.ToArray ());
+					numberAccumulator.Clear ();
+					operations.Enqueue (number);
+
+					if (operations.Count == 3) // means it needs an intermidiate result
+					{
+						intermediateResult = Parse (operations);
+						Console.WriteLine (intermediateResult);
+						operations.Enqueue (intermediateResult.ToString ());
+					}
+					operations.Enqueue ("Mul");
+
+					Console.WriteLine ('*');
+
+					continue;
+				}
+
 				if (console == 45) //sub
 				{
 					Console.WriteLine ("\b"); //cancel - and create a new line
@@ -82,6 +101,7 @@ namespace ConsoleApplication1
 					operations.Enqueue ("Sub");
 					
 					Console.WriteLine ('-');
+					continue;
 				}
 				Console.Write ("\b");
 			}
