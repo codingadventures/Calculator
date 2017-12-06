@@ -32,9 +32,17 @@ namespace ConsoleApplication1
 
 			while (true) {
 				int console = Console.Read ();
-				if (console <= 57 && console >= 48 || console == 46) {
+				if (console <= 57 && console >= 48 ) {
 					//number 0..9 and .
 					numberAccumulator.Add ((byte)console);
+					continue;
+				}
+				if (console == 46) {
+					if (numberAccumulator.Contains (46)) {
+					Console.Write("\b"); //cancel
+					}
+					else
+						numberAccumulator.Add ((byte)console);
 					continue;
 				}
 
@@ -99,7 +107,7 @@ namespace ConsoleApplication1
 					}
 					operations.Enqueue ("Div");
 
-					Console.WriteLine ('*');
+					Console.WriteLine ('/');
 
 					continue;
 				}
