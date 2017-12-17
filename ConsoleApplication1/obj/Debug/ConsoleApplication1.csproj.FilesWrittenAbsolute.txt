@@ -1,5 +1,0 @@
-/Users/john/Documents/GitHub/Calculator/ConsoleApplication1/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/Users/john/Documents/GitHub/Calculator/ConsoleApplication1/bin/Debug/ConsoleApplication1.pdb
-/Users/john/Documents/GitHub/Calculator/ConsoleApplication1/bin/Debug/ConsoleApplication1.exe
-/Users/john/Documents/GitHub/Calculator/ConsoleApplication1/obj/Debug/ConsoleApplication1.exe
-/Users/john/Documents/GitHub/Calculator/ConsoleApplication1/obj/Debug/ConsoleApplication1.pdb
