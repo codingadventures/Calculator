@@ -1,3 +1,8 @@
 
 *.exe
 *.pdb
+.idea/
+obj/
+bin/
+[Dd]ebug/
+[Rr]elease/
